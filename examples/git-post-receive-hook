@@ -88,7 +88,7 @@ try:
     dog.event(event_title, event_data,
               event_type="commit",
               source_type_name="git",
-              tags="#repo:%s,#branch:%s,#sha:%s"%(repo_name, branch, sha),
+              tags=["#repo:%s"%repo_name, "#branch:%s"%branch, "#sha:%s"%sha],
               event_object=event_object)
 
     logger.debug("Datadog has been notified")
