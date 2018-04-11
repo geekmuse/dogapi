@@ -47,6 +47,8 @@ try:
     # Get the commit sha
     p = os.popen("git rev-parse --short HEAD")
     sha = p.read()
+    
+    logger.debug("sha is %s" % sha)
 
     # Events are limited to 4KB in size
     if len(event_data) > 4000: event_data = event_data[:3980] + "..."
@@ -88,7 +90,7 @@ try:
     dog.event(event_title, event_data,
               event_type="commit",
               source_type_name="git",
-              tags=["#repo:%s"%repo_name, "#branch:%s"%branch, "#sha:%s"%sha],
+              tags=["#repo:%s"%repo_name, "#branch:%s"%branch_name, "#sha:%s"%sha],
               event_object=event_object)
 
     logger.debug("Datadog has been notified")
