@@ -70,6 +70,9 @@ try:
         if isbare == "true":
             # Get the basename of CWD, but strip '/hooks' from the end if we happen to be in there.
             repo_name = os.path.basename(re.sub('/?hooks/?$', '', os.getcwd()))
+            # Strip ".git" off of bare repos if present
+            if repo_name[-4:] == '.git':
+                repo_name = repo_name[:-4]
             # Could also be done as so:
             # p = os.popen("basename $(echo $(pwd) | sed 's/hooks$//')")
             # repo_name = p.read()
